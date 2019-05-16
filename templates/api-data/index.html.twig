@@ -2,61 +2,60 @@
 
 {% block title %}3rd Party API Data{% endblock %}
 {% block body %}
-    <div class="card">
-        <div class="card-header">
-            <div class="float-left">
-                <i class="fa fa-align-justify"></i> 3rd Party API Data
-            </div>
-
-            <div class="clearfix"></div>
+<div class="card">
+    <div class="card-header">
+        <div class="float-left">
+            <i class="fa fa-align-justify"></i> 3rd Party API Data
         </div>
 
-        <div class="card-body">
-            <h3>Min Concept Item</h3>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>rxcui</th>
-                    <th>name</th>
-                    <th>TTY</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>#</td>
-                    <td>{{ minconceptitem.rxcui }}</td>
-                    <td>{{ minconceptitem.name }}</td>
-                    <td>{{ minconceptitem.tty }}</td>
-                </tr>
-                </tbody>
-            </table>
-            <h3>Interaction Pair</h3>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>rxcui</th>
-                    <th>name</th>
-                    <th>TTY</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>#</td>
-                    <td>{{ minconceptitem.rxcui }}</td>
-                    <td>{{ minconceptitem.name }}</td>
-                    <td>{{ minconceptitem.tty }}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="card-footer">
-            <nav aria-label="Page navigation example">
-
-            </nav>
-        </div>
+        <div class="clearfix"></div>
     </div>
+
+    <div class="card-body">
+        <h3>Min Concept Item</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>rxcui</th>
+                <th>name</th>
+                <th>TTY</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>#</td>
+                <td>{{ minconceptitem.rxcui }}</td>
+                <td>{{ minconceptitem.name }}</td>
+                <td>{{ minconceptitem.tty }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <h3>Interaction Pair</h3>
+        <table class="table">
+            <thead>
+            <tr>
+
+                <th>Severity</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in interactionPair %}
+            <tr>
+
+                <td>{{ row.severity }}</td>
+                <td>{{ row.description }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <nav aria-label="Page navigation example">
+
+        </nav>
+    </div>
+</div>
 {% endblock %}

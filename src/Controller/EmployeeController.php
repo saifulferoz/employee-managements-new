@@ -123,12 +123,12 @@ class EmployeeController extends AbstractController
         $data = json_decode(
             file_get_contents("https://rxnav.nlm.nih.gov/REST/interaction/interaction.json?rxcui=341248")
         );
-
+        
         return $this->render(
             'api-data/index.html.twig',
             [
                 'minconceptitem' => $data->interactionTypeGroup[0]->interactionType[0]->minConceptItem,
-                'interactionPair' => $data->interactionTypeGroup[0]->interactionType[0]->interactionPair[0],
+                'interactionPair' => $data->interactionTypeGroup[0]->interactionType[0]->interactionPair,
             ]
         );
     }
