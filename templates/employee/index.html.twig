@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Employee index{% endblock %}
+{% set genders = {'M':"Male",'F':'Female','O':"Others"} %}
+{% block body %}
+    <div class="card">
+        <div class="card-header">
+            <div class="float-left">
+                <i class="fa fa-align-justify"></i> List of Employee
+            </div>
+
+            <div class="clearfix"></div>
+            <form method="get">
+                <div class="float-left col-4"><input type="text" name="name" value="{% if search['name'] is defined %}{{ search['name'] }}{% endif %}" placeholder="name" class="form-control"/> &nbsp;</div>
+                <div class="float-left col-4"><input type="number" min="1" name="age" value="{% if search['age'] is defined %}{{ search['age'] }}{% endif %}" placeholder="Age" class="form-control"/> &nbsp;</div>
+                <div class="float-left col-4"><input type="submit" class="btn btn-primary" value="Search" name="search" placeholder="Age" class="form-control"/> &nbsp;</div>
+            </form> <div class="float-right"><a href="{{ path('employee_new') }}" class="btn btn-block btn-info">Add</a></div>
+        </div>
+
+        <div class="card-body">
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Photo</th>
+                    <th>Notes</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for employee in employees %}
+                    <tr>
+                        <td>{{ employee.id }}</td>
+                        <td>{{ employee.name }}</td>
+                        <td>{{ date('now').diff((date(employee.dateOfBirth))).format('%y years') }}</td>
+                        <td>{{ genders[employee.gender] }}</td>
+                        <td><img class="img-thumbnail" src="{{ asset('uploads') }}/{{ employee.photo }}" width="80px" alt="Profile picture of {{ employee.name }}"/></td>
+                        <td>{{ employee.notes }}</td>
+                        <td>
+                            <a href="{{ path('employee_show', {'id': employee.id}) }}">show</a>
+                            <a href="{{ path('employee_edit', {'id': employee.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            <nav aria-label="Page navigation example">
+                {{ knp_pagination_render(employees) }}
+            </nav>
+        </div>
+    </div>
+{% endblock %}

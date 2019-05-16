@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Employee{% endblock %}
+{% set genders ={'M':"Male",'F':"Female",'O':"Others"} %}
+{% block body %}
+    <div class="card">
+        <div class="card-header">
+            <h1>Employee</h1>
+        </div>
+
+        <div class="card-body">
+
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ employee.id }}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ employee.name }}</td>
+                </tr>
+                <tr>
+                    <th>Date_of_birth</th>
+                    <td>{{ employee.dateOfBirth ? employee.dateOfBirth|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td>{{ genders[employee.gender] }}</td>
+                </tr>
+                <tr>
+                    <th>Photo</th>
+                    <td><img src="{{ asset('uploads/') }}/{{ employee.photo }}"></td>
+                </tr>
+                <tr>
+                    <th>Notes</th>
+                    <td>{{ employee.notes }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            <span class="float-left"> <a href="{{ path('employee_index') }}"
+                                         class="btn btn-info btn-block">Back</a></span>
+            &nbsp;&nbsp;&nbsp;
+            <span class="float-left"><a href="{{ path('employee_edit', {'id': employee.id}) }}"
+                                        class="btn btn-block btn-primary">edit</a></span>
+            &nbsp;&nbsp;&nbsp;
+            <span class="float-left">{{ include('employee/_delete_form.html.twig') }}</span>
+        </div>
+
+    </div>
+{% endblock %}

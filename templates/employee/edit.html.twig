@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Employee{% endblock %}
+
+{% block body %}
+    <h1>Edit Employee</h1>
+
+    {{ include('employee/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('employee') }}
+{% endblock %}
